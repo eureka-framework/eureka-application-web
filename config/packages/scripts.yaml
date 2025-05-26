@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    public: true # required, because container is injected in console and try to find script service to run it.
+
+  Application\Script\:
+    resource: '../../scripts/*'
+
+  Application\Script\Symfony:
+    arguments:
+      $commands:
+        'importmap:require': '@Symfony\Component\AssetMapper\Command\ImportMapRequireCommand'
+        'asset-map:compile': '@Symfony\Component\AssetMapper\Command\AssetMapperCompileCommand'
+        'importmap:install': '@Symfony\Component\AssetMapper\Command\ImportMapInstallCommand'

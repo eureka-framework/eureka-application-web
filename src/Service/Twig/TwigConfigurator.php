@@ -23,12 +23,11 @@ class TwigConfigurator
      */
     public function __construct(
         private readonly Twig\Environment $twig,
+        private readonly TwigHelper $twigHelper,
         private readonly array $twigPaths,
-        Router $router,
-        string $webAssetsPath
     ) {
         $this->configurePaths($twigPaths);
-        $this->configureHelper($router, $webAssetsPath);
+        $this->configureHelper();
         $this->configureExtensions();
     }
 
@@ -67,11 +66,10 @@ class TwigConfigurator
         }
     }
 
-    private function configureHelper(Router $router, string $webAssetsPath): void
+    private function configureHelper(): void
     {
         //~ Add functions to main twig instance
-        $helper = new TwigHelper($router, $webAssetsPath);
-        $this->configureFunctions($helper->getCallbackFunctions());
+        $this->configureFunctions($this->twigHelper->getCallbackFunctions());
     }
 
     private function configureExtensions(): void

@@ -24,11 +24,6 @@ services:
   Application\Middleware\:
     resource: '../../src/Middleware'
 
-  Application\Middleware\TwigMiddleware:
-    arguments:
-      $twigPaths:     '%twig.paths%'
-      $webAssetsPath: '%app.web.assets.path%'
-
   #~ Error middleware for classic web application
   Eureka\Kernel\Http\Middleware\ErrorMiddleware:
     arguments:

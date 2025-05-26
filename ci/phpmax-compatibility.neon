@@ -1,0 +1,16 @@
+includes:
+  - ./../vendor/phpstan/phpstan-phpunit/extension.neon
+  - ./../vendor/phpstan/phpstan-phpunit/rules.neon
+  - ./../vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+  phpVersion: 80400
+  level: 0
+  paths:
+    - ./../bin/console
+    - ./../src
+    - ./../scripts
+    - ./../tests
+
+  bootstrapFiles:
+    - ./../vendor/autoload.php

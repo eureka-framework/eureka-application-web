@@ -1,0 +1,14 @@
+{% extends '@layout/main.html.twig' %}
+
+{% block page %}
+
+    {% include '@common/header/header.html.twig' %}
+
+    <div class="container">
+        {% block content %}{% endblock %}
+
+        {% include '@common/footer/footer.html.twig'%}
+    </div>
+
+
+{% endblock %}

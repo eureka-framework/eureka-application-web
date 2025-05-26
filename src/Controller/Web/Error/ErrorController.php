@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Application\Controller\Web\Error;
 
-use Application\Controller\Common\AbstractWebController;
+use Application\Controller\Web\AbstractWebController;
 use Eureka\Component\Web\Notification\NotificationType;
 use Eureka\Kernel\Http\Controller\ErrorControllerInterface;
 use Eureka\Kernel\Http\Exception;
@@ -51,13 +51,13 @@ class ErrorController extends AbstractWebController implements ErrorControllerIn
             default => 500,
         };
 
-        $template = $httpCode < 500 ? 'Error4XX.twig' : 'Error5XX.twig';
+        $template = $httpCode < 500 ? 'error_4XX.html.twig' : 'error_5XX.html.twig';
 
         $this->getContext()
             ->add('httpCode', $httpCode)
             ->add('exception', $exception)
         ;
 
-        return $this->getResponse($this->render('@common/Error/' . $template), $httpCode);
+        return $this->getResponse($this->render('@common/error/' . $template), $httpCode);
     }
 }

@@ -1,0 +1,41 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+      $importMapConfigPath: '%kernel.directory.root%/importmap.php'
+      $vendorDir:           '%kernel.directory.root%/assets/vendor'
+      $paths:
+        'assets/': ''
+      $projectRootDir: '%kernel.directory.root%'
+      $projectDir:     '%kernel.directory.root%'
+      $directory:      '%kernel.directory.root%/public/assets'
+      $publicDir:      '%kernel.directory.root%/public'
+      $cacheDir:       '%kernel.directory.cache%/%kernel.environment%/asset_mapper/'
+      $debug:          '%kernel.debug%'
+      $isDebug:        '%kernel.debug%'
+      $assetMapperFactory: !service_closure '@Symfony\Component\AssetMapper\AssetMapper'
+      $assetCompilers:
+        - '@Symfony\Component\AssetMapper\Compiler\CssAssetUrlCompiler'
+        - '@Symfony\Component\AssetMapper\Compiler\JavaScriptImportPathCompiler'
+        - '@Symfony\Component\AssetMapper\Compiler\SourceMappingUrlsCompiler'
+
+  Symfony\Component\AssetMapper\:
+    resource: '../../vendor/symfony/asset-mapper/*'
+
+  Symfony\Component\AssetMapper\AssetMapper:
+    arguments:
+      $mappedAssetFactory: '@Symfony\Component\AssetMapper\Factory\CachedMappedAssetFactory'
+
+  Symfony\Component\AssetMapper\Factory\CachedMappedAssetFactory:
+    arguments:
+      $innerFactory: '@Symfony\Component\AssetMapper\Factory\MappedAssetFactory'
+
+  Symfony\Component\AssetMapper\Factory\MappedAssetFactory: ~
+  Symfony\Component\AssetMapper\Command\ImportMapRequireCommand: ~
+  Symfony\Component\AssetMapper\Command\AssetMapperCompileCommand: ~
+  Symfony\Component\AssetMapper\Command\ImportMapInstallCommand: ~
+  Symfony\Component\AssetMapper\Compiler\CssAssetUrlCompiler: ~
+  Symfony\Component\AssetMapper\Compiler\JavaScriptImportPathCompiler: ~
+  Symfony\Component\AssetMapper\Compiler\SourceMappingUrlsCompiler: ~
+  Symfony\Component\AssetMapper\AssetMapperRepository: ~

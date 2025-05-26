@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Application\Controller\Web\Home;
 
-use Application\Controller\Common\AbstractWebController;
+use Application\Controller\Web\AbstractWebController;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -26,6 +26,6 @@ class HomeController extends AbstractWebController
      */
     public function index(): ResponseInterface
     {
-        return $this->getResponse($this->render('@app/Home/Home.twig'));
+        return $this->getResponse($this->render('@app/home/home.html.twig'));
     }
 }

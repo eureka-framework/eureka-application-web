@@ -1,14 +1,14 @@
 parameters:
-  twig.template.name: 'bootswatch'
+  twig.theme: 'bootswatch'
 
   twig.cache.dir: '%kernel.directory.cache%/%kernel.environment%/twig'
 
   twig.paths:
-    app:    '%kernel.directory.root%/templates/%twig.template.name%/app'
-    common: '%kernel.directory.root%/templates/%twig.template.name%/common'
-    layout: '%kernel.directory.root%/templates/%twig.template.name%/layout'
-    macro:  '%kernel.directory.root%/templates/%twig.template.name%/macro'
-    mail:   '%kernel.directory.root%/templates/%twig.template.name%/mail'
+    app:    '%kernel.directory.root%/templates/%twig.theme%/app'
+    common: '%kernel.directory.root%/templates/%twig.theme%/common'
+    layout: '%kernel.directory.root%/templates/%twig.theme%/layout'
+    macro:  '%kernel.directory.root%/templates/%twig.theme%/macro'
+    mail:   '%kernel.directory.root%/templates/%twig.theme%/mail'
 
 services:
 
@@ -30,7 +30,10 @@ services:
   Application\Service\Twig\TwigConfigurator:
     arguments:
       $twigPaths:       '%twig.paths%'
-      $webAssetsPath:   '%app.web.assets.path%'
+
+  Application\Service\Twig\TwigHelper:
+    arguments:
+      $webAssetsPath:   '%app.public.assets.path%'
 
   Application\Service\Twig\TwigCacheWarmer:
     tags:

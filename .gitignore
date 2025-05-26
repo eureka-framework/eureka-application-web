@@ -9,7 +9,7 @@ config/secrets/*
 
 #~ Statics
 node_modules/
-web/assets
+public/assets
 yarn.lock
 yarn-error.log
 

@@ -5,13 +5,13 @@ parameters:
   app.cookie.httponly: true   # of false if http is used
   app.cookie.secure:   false  # set to true if app use https
 
-  app.web.assets.path: '%kernel.directory.root%/web/assets'
+  app.public.assets.path: '%kernel.directory.root%/public/assets'
 
 services:
   _defaults:
     autowire: true
     bind:
-      $connectionName:          'common'
+      $connectionName: 'common'
 
   #~ Application source code except controllers & middleware (see packages/middleware.yaml)
   Application\:
@@ -23,17 +23,16 @@ services:
     resource: '../../src/Controller/Web'
     public: true # services called in ControllerMiddleware
     calls:
-      - [ 'setTwig', [ '@twig' ] ]
-      - [ 'setRouter', [ '@router' ] ]
-      - [ 'setResponseFactory', [ '@response_factory' ] ]
-      - [ 'setRequestFactory', [ '@request_factory' ] ]
-      - [ 'setServerRequestFactory', [ '@server_request_factory' ] ]
-      - [ 'setStreamFactory', [ '@stream_factory' ] ]
-      - [ 'setUriFactory', [ '@uri_factory' ] ]
-      - [ 'setSession', [ '@session' ] ]
-      - [ 'setMenuConfig', [ '%menu.config.left%', '%menu.cookie_state_name%', '%menu.config.right%' ] ]
-      - [ 'setMetaConfig', [ '%meta.config%' ] ]
-      - [ 'setRootDirectory', [ '%kernel.directory.root%' ] ]
+      - setTwig:                 [ '@twig' ]
+      - setRouter:               [ '@router' ]
+      - setResponseFactory:      [ '@response_factory' ]
+      - setRequestFactory:       [ '@request_factory' ]
+      - setServerRequestFactory: [ '@server_request_factory' ]
+      - setStreamFactory:        [ '@stream_factory' ]
+      - setUriFactory:           [ '@uri_factory' ]
+      - setSession:              [ '@session' ]
+      - setMenuConfig:           [ '%menu.config.left%', '%menu.cookie_state_name%', '%menu.config.right%' ]
+      - setMetaConfig:           [ '%meta.config%' ]
 
   #~ Application Domain
   Application\Domain\:
