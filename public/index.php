@@ -17,9 +17,9 @@ session_start();
 //~ Define Loader & add main classes for config
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$root  = realpath(__DIR__ . '/..');
-$env   = getenv('EKA_ENV') ?: 'prod';
-$debug = (bool) (getenv('EKA_DEBUG') ?: ($env === 'dev'));
+$root  = (string) \realpath(__DIR__ . '/..');
+$env   = !\is_string(getenv('EKA_ENV')) ? 'dev' : (string) \getenv('EKA_ENV');
+$debug = !\is_string(getenv('EKA_DEBUG')) ? ($env === 'dev') : (bool) \getenv('EKA_DEBUG');
 
 //~ Run application
 try {

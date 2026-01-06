@@ -23,6 +23,6 @@ class EmptyTest extends TestCase
         //~ When
 
         //~ Then
-        $this->assertTrue($bool);
+        self::assertTrue($bool);
     }
 }

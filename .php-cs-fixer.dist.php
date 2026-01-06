@@ -4,8 +4,8 @@ return (new PhpCsFixer\Config())
     //~ Rules
     ->setRules(
         [
-            '@PER-CS2.0' => true,
-        ]
+            '@PER-CS3x0' => true,
+        ],
     )
 
     //~ Format
@@ -16,5 +16,13 @@ return (new PhpCsFixer\Config())
     ->setCacheFile(__DIR__ . '/build/.php-cs-fixer.cache')
 
     //~ Finder
-    ->setFinder((new PhpCsFixer\Finder())->in([__DIR__ . '/src', __DIR__ . '/tests']))
+    ->setFinder((new PhpCsFixer\Finder())->in(
+        [
+            __DIR__ . '/src',
+            __DIR__ . '/tests',
+            __DIR__ . '/bin',
+            __DIR__ . '/public',
+            __DIR__ . '/scripts',
+        ],
+    ))
 ;

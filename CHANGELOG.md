@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-01-06
+[3.0.0]: https://github.com/eureka-framework/eureka-application-web/compare/2.0.0...3.0.0
+### Changed
+- Now compatible with PHP 8.3+
+- Update Makefile
+- Update dependencies
+- Update CI configs
+- Update code according to dependencies updates
+### Added
+- Add new script to handle symfony commands
+- Add asset mapper
+### Removed
+- Remove node / yarn dependency
+
+---
+
 ## [2.0.0] - 2024-03-19
 [2.0.0]: https://github.com/eureka-framework/eureka-application-web/compare/1.0.0...2.0.0
 ### Changed

@@ -2,6 +2,7 @@
 Template application for base web site.
 
 
+
 ## Contributing
 
 See the [CONTRIBUTING](CONTRIBUTING.md) file.
@@ -26,40 +27,40 @@ NB: For the components, the `composer.lock` file is not committed.
 #### Tests
 You can run unit tests (with coverage) on your side with following command:
 ```bash
-make tests
+make php/tests
 ```
 
 You can run integration tests (without coverage) on your side with following command:
 ```bash
-make integration
+make php/integration
 ```
 
 For prettier output (but without coverage), you can use the following command:
 ```bash
-make testdox # run tests without coverage reports but with prettified output
+make php/testdox # run tests without coverage reports but with prettified output
 ```
 
 #### Code Style
 You also can run code style check with following commands:
 ```bash
-make phpcs
+make php/check
 ```
 
 You also can run code style fixes with following commands:
 ```bash
-make phpcsf
+make php/fix
 ```
 
 #### Check for missing explicit dependencies
 You can check if any explicit dependency is missing with the following command:
 ```bash
-make deps
+make php/deps
 ```
 
 #### Static Analysis
 To perform a static analyze of your code (with phpstan, lvl 9 at default), you can use the following command:
 ```bash
-make analyse
+make php/analyse
 ```
 
 To ensure you code still compatible with current supported version at Deezer and futures versions of php, you need to
@@ -67,12 +68,12 @@ run the following commands (both are required for full support):
 
 Minimal supported version:
 ```bash
-make php81compatibility
+make php/min-compatibility
 ```
 
 Maximal supported version:
 ```bash
-make php83compatibility
+make php/max-compatibility
 ```
 
 #### CI Simulation
@@ -83,4 +84,4 @@ make ci
 
 ## License
 
-This project is currently under The MIT License (MIT). See [LICENCE](LICENSE) file for more information.
+This project is currently under The MIT License (MIT). See [LICENSE](LICENSE) file for more information.

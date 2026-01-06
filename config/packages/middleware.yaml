@@ -27,4 +27,4 @@ services:
   #~ Error middleware for classic web application
   Eureka\Kernel\Http\Middleware\ErrorMiddleware:
     arguments:
-      $errorController: '@Application\Controller\Web\Error\ErrorController'
+      $controller: '@Application\Controller\Web\Error\ErrorController'

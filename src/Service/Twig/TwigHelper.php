@@ -50,9 +50,9 @@ class TwigHelper
         $importMapGenerator = new TwigImportMapGenerator($this->manifestLoader, $this->webAssetsPath, $name);
 
         return
-            $importMapGenerator->css() .
-            $importMapGenerator->importmap() .
-            $importMapGenerator->js()
+            $importMapGenerator->css()
+            . $importMapGenerator->importmap()
+            . $importMapGenerator->js()
         ;
     }
 
