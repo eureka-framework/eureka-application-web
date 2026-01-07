@@ -1,6 +1,10 @@
 includes:
-  - vendor/phpstan/phpstan-phpunit/extension.neon
-  - vendor/phpstan/phpstan-phpunit/rules.neon
+  - ./vendor/phpstan/phpstan-phpunit/extension.neon
+  - ./vendor/phpstan/phpstan-phpunit/rules.neon
+  - ./vendor/phpstan/phpstan-deprecation-rules/rules.neon
+  - ./vendor/phpstan/phpstan-strict-rules/rules.neon
+  - phar://phpstan.phar/conf/bleedingEdge.neon
+
 
 parameters:
   phpVersion: 80300
@@ -8,10 +12,15 @@ parameters:
   paths:
     - ./src
     - ./tests
+    - ./bin
+    - ./public
+    - ./scripts
 
   bootstrapFiles:
     - ./vendor/autoload.php
 
   ignoreErrors:
-    - message: '`Call to method PHPUnit\\Framework\\Assert::assertTrue\(\) with true will always evaluate to true.`'
+    # Test Related
+    -
+      message: '`Call to static method PHPUnit\\Framework\\Assert::assertTrue\(\) with true will always evaluate to true.`'
       path:    'tests/Unit/EmptyTest.php'

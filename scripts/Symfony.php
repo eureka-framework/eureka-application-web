@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) Deezer
+ * Copyright (c) Romain Cottard
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -18,14 +18,11 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-/**
- * Class Liveness
- *
- * @author Romain Cottard
- */
 class Symfony extends AbstractScript
 {
-    private array $argv = [];
+    /** @var list<string> $argv */
+    private array $argv;
+
     /**
      * @param Command[] $commands
      */
@@ -36,10 +33,12 @@ class Symfony extends AbstractScript
         $this->setExecutable();
 
         //~ Inject Symfony command as -c option
-        $script  = \array_shift($_SERVER['argv']);
-        $this->argv = $_SERVER['argv'];
+        /** @var array{argv: string[]} $_SERVER */
+        $script     = \array_shift($_SERVER['argv']);
+        $this->argv = \array_values($_SERVER['argv']);
 
         $command = \array_shift($_SERVER['argv']);
+
         $_SERVER['argv'] = [$script, 'symfony', '-c', $command];
 
         $this->initOptions(
@@ -50,10 +49,10 @@ class Symfony extends AbstractScript
 
     public function run(): void
     {
-        $command = $this->options()->value('command', 'c');
+        $command = (string) $this->options()->value('command', 'c');
 
         if (!isset($this->commands[$command])) {
-            throw new \UnexpectedValueException("Unkown symfony command '$command'");
+            throw new \UnexpectedValueException("Unknown symfony command '$command'");
         }
 
         $input  = new ArgvInput($this->argv);

@@ -1,7 +1,7 @@
 .PHONY: validate install compile update phpcs phpcsf php-min-compatibility php-max-compatibility phpstan analyze tests testdox ci clean
 
 PHP_MIN_VERSION := "8.3"
-PHP_MAX_VERSION := "8.4"
+PHP_MAX_VERSION := "8.5"
 COMPOSER_BIN := composer
 
 define header =
@@ -56,10 +56,10 @@ php/deps: composer.json
 
 php/check: vendor/bin/php-cs-fixer
 	$(call header,Checking Code Style)
-	@PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer check -v --diff
+	@XDEBUG_MODE=off ./vendor/bin/php-cs-fixer check -v --diff
 php/fix: vendor/bin/php-cs-fixer
 	$(call header,Fixing Code Style)
-	@PHP_CS_FIXER_IGNORE_ENV=1 ./vendor/bin/php-cs-fixer fix -v
+	@XDEBUG_MODE=off ./vendor/bin/php-cs-fixer fix -v
 
 php/min-compatibility: vendor/bin/phpstan build/reports/phpstan
 	$(call header,Checking PHP ${PHP_MIN_VERSION} compatibility)
